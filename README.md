@@ -4,9 +4,9 @@
 
 A local, open-source practice app for musicians. Paste a YouTube link and OpenMoises splits the song into stems (drums, bass, vocals, other, and optionally guitar and piano) on your own machine. Then play along in the browser with per-stem volume, mute and solo, live tempo and key changes, A-B looping, and detected key and BPM. Setlists remember the tempo, key, mix and loop you practise each song with. There are no monthly limits because nothing leaves your computer.
 
-[![OpenMoises demo video (22 s)](docs/demo.jpg)](docs/demo.mp4)
+![OpenMoises demo](docs/demo.gif)
 
-*22-second demo. Click to play.*
+*[Watch with sound (MP4)](docs/demo.mp4)*
 
 ## Requirements
 

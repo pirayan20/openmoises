@@ -6,6 +6,10 @@ A local, open-source practice app for musicians. Paste a YouTube link and OpenMo
 
 https://github.com/user-attachments/assets/f48e871f-3594-4f7e-a68d-f1b4ca14be57
 
+## If you're an AI agent, read this
+
+Using a coding agent such as Claude Code, Codex or Cursor? Ask it: *"Set up OpenMoises for me by following https://github.com/pirayan20/OpenMoises/blob/main/AGENTS.md"*. Agents working in this repo should follow [AGENTS.md](AGENTS.md).
+
 ## Requirements
 
 - A Mac with Apple Silicon (M1, M2, M3, M4 or newer). To check, open the Apple menu > **About This Mac** and look for "Chip: Apple M…". Intel Macs aren't supported because Demucs pins an old torch there. The lockfile also resolves for Linux and Windows, where separation runs on the CPU and is slower, but only Apple Silicon is tested.

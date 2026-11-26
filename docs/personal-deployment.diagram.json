@@ -1,0 +1,19 @@
+{
+  "diagram_type": "architecture",
+  "meta": {"title": "OpenMoises personal cloud deployment"},
+  "components": [
+    {"id":"browser","type":"frontend","label":"Your browser","sublabel":"Mix, tempo and pitch","row":0,"col":0},
+    {"id":"render","type":"backend","label":"Render","sublabel":"Web + Python API","row":0,"col":1},
+    {"id":"modal","type":"backend","label":"Modal GPU","sublabel":"Demucs + analysis","row":0,"col":2},
+    {"id":"auth","type":"security","label":"Supabase Auth","sublabel":"Google, your account only","row":1,"col":0},
+    {"id":"db","type":"database","label":"Supabase Postgres","sublabel":"Songs, playlists, jobs","row":1,"col":1,"icon":{"slug":"postgresql","provider":"tools"}},
+    {"id":"storage","type":"database","label":"Supabase Storage","sublabel":"Private stems and covers","row":1,"col":2}
+  ],
+  "connections": [
+    {"from":"browser","to":"render","label":"Submit / poll","variant":"emphasis"},
+    {"from":"render","to":"modal","label":"Start job","variant":"dashed"},
+    {"from":"browser","to":"auth","label":"Sign in","variant":"security"},
+    {"from":"render","to":"db","label":"Save / read"},
+    {"from":"modal","to":"storage","label":"Upload stems","variant":"emphasis"}
+  ]
+}

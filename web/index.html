@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenMoises</title>
+<link rel="icon" href="/assets/logo.png">
+<link rel="stylesheet" href="/style.css">
+<script src="/vendor/SignalsmithStretch.js" defer></script>
+<script src="/app.js" defer></script>
+<script src="/home-bg.js" type="module"></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.14v13.72a1 1 0 0 0 1.52.85l11.1-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><g fill="currentColor"><rect x="6" y="4.5" width="4" height="15" rx="1.2"/><rect x="14" y="4.5" width="4" height="15" rx="1.2"/></g></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><g fill="currentColor"><rect x="4.5" y="5" width="2.5" height="14" rx="1"/><path d="M19.5 6.16v11.68a1 1 0 0 1-1.55.83L9.6 12.83a1 1 0 0 1 0-1.66l8.35-5.84a1 1 0 0 1 1.55.83z"/></g></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><g fill="currentColor"><rect x="17" y="5" width="2.5" height="14" rx="1"/><path d="M4.5 6.16v11.68a1 1 0 0 0 1.55.83l8.35-5.84a1 1 0 0 0 0-1.66L6.05 5.33a1 1 0 0 0-1.55.83z"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-studio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 10v4M6 6v12M10 3v18M14 8v8M18 5v14M22 10v4"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+</svg>
+
+<aside class="side" id="sidebar">
+  <a class="brand" href="#/"><img src="/assets/logo.png" alt="">OpenMoises</a>
+  <nav class="nav" aria-label="Main">
+    <a id="navHome" href="#/"><svg><use href="#i-home"/></svg>Home</a>
+    <a id="navLibrary" href="#/library"><svg><use href="#i-music"/></svg>Library</a>
+  </nav>
+  <div class="side-content">
+    <div class="side-head"><h2 class="side-heading">Playlists</h2><button class="side-add" data-act="newPlaylist" aria-label="New playlist" title="New playlist"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+    <p class="side-empty" id="plSideEmpty">Save a song from Studio to start a setlist.</p>
+    <ul class="lib" id="plSide"></ul>
+    <button class="side-more" id="plMore" data-act="plMore" hidden></button>
+    <h2 class="side-heading">Library</h2>
+    <ul class="lib" id="lib"></ul>
+    <a class="side-more" id="libMore" href="#/library" hidden></a>
+  </div>
+  <div id="sidebarResize" class="sidebar-resize" role="separator" tabindex="0" aria-label="Resize sidebar" aria-controls="sidebar" aria-orientation="vertical" aria-valuemin="180" aria-valuemax="420" aria-valuenow="240"></div>
+</aside>
+
+<main id="main">
+  <section id="home" class="home-page">
+    <div class="home-bg" id="homeBg" aria-hidden="true"></div>
+    <div class="home-intro">
+      <p class="eyebrow">Your own practice space</p>
+      <h1>Hear every part.<br>Play your own.</h1>
+      <p class="home-description">Turn a song into stems. Make the mix you want to play along with.</p>
+      <form class="import-box" id="add" novalidate>
+        <label class="import-label" for="url">Start with a song</label>
+        <input id="url" type="url" placeholder="Paste a YouTube link…" aria-describedby="hint" autocomplete="off" spellcheck="false">
+        <div class="import-actions">
+          <details class="model-picker" id="modelPicker">
+            <summary aria-label="Choose separation model"><span id="modelLabel">Demucs HQ</span><span aria-hidden="true">⌄</span></summary>
+            <fieldset class="model-menu" id="modelOptions"><legend>Separation models</legend></fieldset>
+          </details>
+          <button class="add" id="addBtn">Separate song <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="hint" id="hint" aria-live="polite"></p>
+      </form>
+      <p class="local-note">Processed locally on your Mac. Use music you have permission to process.</p>
+      <button class="scroll-hint" data-act="scrollDown" aria-label="Scroll to your library"><svg aria-hidden="true"><use href="#i-down"/></svg></button>
+    </div>
+    <div class="home-shortcuts">
+      <a class="home-shortcut collection-shortcut" href="#/library">
+        <svg aria-hidden="true"><use href="#i-music"/></svg>
+        <p class="eyebrow">Your collection</p><h2>All your songs, ready to play.</h2>
+        <p id="homeLibraryCount">Your library starts here.</p><span class="shortcut-link">Open Library ↗</span>
+      </a>
+      <a class="home-shortcut studio-shortcut" id="homeStudio" href="#/library">
+        <img id="homeStudioArt" alt="" hidden>
+        <svg aria-hidden="true"><use href="#i-studio"/></svg>
+        <p class="eyebrow">Make it your mix</p><h2 id="homeStudioTitle">A space to practice.</h2>
+        <p id="homeStudioDescription">Choose a song from your library to open its stems.</p><span class="shortcut-link" id="homeStudioLink">Browse songs ↗</span>
+      </a>
+    </div>
+    <div id="homeRecent" hidden>
+      <div class="home-section-heading"><h2>Recently added</h2><a href="#/library">View all ↗</a></div>
+      <div class="grid" id="homeGrid"></div>
+    </div>
+  </section>
+
+  <section id="libraryView" hidden>
+    <header class="library-heading"><div class="library-tools"><h1>Your library</h1><input class="search" id="libSearch" type="search" placeholder="Search your library" aria-label="Search your library" autocomplete="off"></div><a class="btn btn-primary" href="#/">Add a song</a></header>
+    <div class="hero" id="hero">
+      <img class="hero-art" id="heroArt" alt="">
+      <div class="hero-body">
+        <h1 class="hero-title" id="heroTitle"></h1>
+        <p class="hero-artist" id="heroArtist"></p>
+        <p class="hero-meta"><span id="heroMeta"></span><span class="model-pill" id="heroModel"></span></p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="heroPlay" data-act="play"><svg><use id="heroPlayIcon" href="#i-play"/></svg><span id="heroPlayLabel">Play</span></button>
+          <a class="btn btn-secondary" id="heroStudio"><svg><use href="#i-studio"/></svg>Open Studio</a>
+        </div>
+      </div>
+    </div>
+    <div class="welcome" id="welcome" hidden>
+      <h1>Add your first song</h1>
+      <p>Paste a YouTube link above. OpenMoises splits it into bass, drums, vocals and the rest on your Mac, then you can practice along with any part.</p>
+    </div>
+    <div id="recent">
+      <h2 class="section-heading" id="gridTitle">Recently added</h2>
+      <div class="grid" id="grid"></div>
+      <p class="pl-empty" id="libNone" hidden>No songs match.</p>
+    </div>
+  </section>
+
+  <section id="playlistView" class="playlist-page" hidden>
+    <header class="pl-head">
+      <div class="pl-cover" id="plArt"></div>
+      <div class="pl-info">
+        <p class="pl-kind">Setlist</p>
+        <input class="pl-name" id="plName" aria-label="Playlist name" maxlength="100" spellcheck="false">
+        <p class="pl-meta" id="plMeta"></p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="plPlay" data-act="plPlay"><svg><use id="plPlayIcon" href="#i-play"/></svg><span id="plPlayLabel">Play</span></button>
+          <button class="btn btn-secondary" id="plStudioBtn" data-act="plStudio"><svg><use href="#i-studio"/></svg>Practice in Studio</button>
+          <button class="btn btn-secondary" data-act="pickerOpen" aria-haspopup="dialog"><svg><use href="#i-plus"/></svg>Add songs</button>
+          <button class="btn btn-ghost" data-act="plDelete" aria-label="Delete playlist" title="Delete playlist"><svg><use href="#i-trash"/></svg></button>
+        </div>
+      </div>
+    </header>
+    <ol class="pl-list" id="plList"></ol>
+    <p class="pl-empty" id="plEmpty" hidden>No songs yet. Press <b>Add songs</b> to pick from your library, or open a song in Studio, set the tempo, key and mix you practise with, and press <b>Save to setlist</b>.</p>
+  </section>
+
+</main>
+
+  <section id="studio" class="studio-panel" aria-labelledby="studioPanelTitle" aria-hidden="true" inert>
+    <div class="studio-panel-top">
+      <h2 id="studioPanelTitle">Studio</h2>
+      <div class="studio-panel-actions">
+        <button id="closeStudio" class="ctrl" data-act="closeStudio" aria-label="Close Studio and return to previous page" title="Close Studio (Esc)">×</button>
+      </div>
+    </div>
+    <header class="studio-head">
+      <div class="studio-art"><img id="stArt" alt=""></div>
+      <div class="studio-info">
+        <h1 id="stTitle"></h1>
+        <p class="studio-artist" id="stArtist"></p>
+        <p class="studio-meta"><label class="key-pick">Key <select id="stKeySel" title="Set the key if detection got it wrong"></select></label><span class="alt" id="stAlt"></span><span id="stBpm"></span></p>
+      </div>
+      <div class="studio-actions">
+        <div class="segmented" id="presets" role="group" aria-label="Mix presets"></div>
+        <button class="btn btn-secondary btn-sm" id="saveSet" data-act="saveTo" aria-haspopup="menu"><svg aria-hidden="true"><use href="#i-plus"/></svg>Save to setlist</button>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="tool" role="group" aria-label="Loop">
+        <button class="tbtn" id="loopBtn" data-act="loop" aria-pressed="false" title="Drag across a waveform to set a loop"><svg><use href="#i-repeat"/></svg>Loop</button>
+        <button class="tbtn" data-act="setA" aria-label="Set loop start here">A</button>
+        <button class="tbtn" data-act="setB" aria-label="Set loop end here">B</button>
+      </div>
+      <div class="tool" role="group" aria-labelledby="tempoLabel">
+        <span class="tool-label" id="tempoLabel">Tempo</span>
+        <button class="tbtn" data-act="tempo" data-d="-1" aria-label="Slower"><svg><use href="#i-minus"/></svg></button>
+        <output class="readout" id="tempoV"></output>
+        <button class="tbtn" data-act="tempo" data-d="1" aria-label="Faster"><svg><use href="#i-plus"/></svg></button>
+      </div>
+      <div class="tool" role="group" aria-labelledby="keyLabel">
+        <span class="tool-label" id="keyLabel">Key</span>
+        <button class="tbtn" data-act="pitch" data-d="-1" aria-label="Down a semitone"><svg><use href="#i-minus"/></svg></button>
+        <output class="readout" id="keyV"></output>
+        <button class="tbtn" data-act="pitch" data-d="1" aria-label="Up a semitone"><svg><use href="#i-plus"/></svg></button>
+      </div>
+      <p class="studio-status" id="stStatus" role="status" hidden><span class="spinner"></span><span id="stStatusText"></span></p>
+    </div>
+
+    <div class="tracks-scroll" id="tracksScroll" tabindex="0" role="region" aria-label="Stem timeline, scroll horizontally">
+    <div class="tracks" id="tracks">
+      <div class="ruler" id="ruler"></div>
+      <div id="lanes"></div>
+      <div class="overlay" aria-hidden="true"><div class="region"></div><div class="shade"></div><div class="head"></div></div>
+    </div>
+    </div>
+  </section>
+
+<div class="menu" id="plMenu" role="menu" hidden></div>
+<dialog class="picker" id="picker" aria-labelledby="pickerTitle">
+  <form method="dialog" class="picker-form">
+    <header class="picker-head"><h2 id="pickerTitle">Add songs</h2><button class="ctrl" value="cancel" aria-label="Close">×</button></header>
+    <input class="search picker-search" id="pickerSearch" type="search" placeholder="Search your library" aria-label="Search your library" autocomplete="off">
+    <ul class="picker-list" id="pickerList"></ul>
+    <p class="picker-none" id="pickerNone" hidden>No songs match.</p>
+    <footer class="picker-foot"><button class="btn btn-sm btn-ghost" value="cancel">Cancel</button><button class="btn btn-sm btn-primary" id="pickerAdd" value="add" disabled>Add</button></footer>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<footer class="bar" id="bar" hidden>
+  <div class="up-next" id="upNext" hidden><img id="upNextArt" alt=""><span><small>Up next</small><b id="upNextTitle"></b></span></div>
+  <div class="now">
+    <img class="now-art" id="barArt" alt="">
+    <div class="now-text"><div class="now-title" id="barTitle"></div><div class="now-artist" id="barArtist"></div></div>
+  </div>
+  <div class="transport">
+    <div class="transport-buttons">
+      <button class="ctrl" id="prev" data-act="prev" aria-label="Previous" title="Previous"><svg><use href="#i-prev"/></svg></button>
+      <button class="ctrl play-btn" id="playBtn" data-act="toggle" aria-label="Play"><svg><use id="playIcon" href="#i-play"/></svg></button>
+      <button class="ctrl" id="next" data-act="next" aria-label="Next" title="Next"><svg><use href="#i-next"/></svg></button>
+    </div>
+    <div class="scrub-row">
+      <span id="elapsed">0:00</span>
+      <div class="scrub" id="scrub" role="slider" tabindex="0" aria-label="Position" aria-valuemin="0">
+        <div class="scrub-track"><div class="scrub-fill"></div></div><div class="scrub-knob"></div>
+      </div>
+      <span id="total">0:00</span>
+    </div>
+  </div>
+  <div class="bar-right">
+    <a class="bar-studio" id="barStudio" aria-label="Open current song in Studio" title="Open Studio"><svg aria-hidden="true"><use href="#i-studio"/></svg><span>Studio</span></a>
+    <svg class="vol-icon" aria-hidden="true"><use href="#i-volume"/></svg>
+    <input class="volume" id="volume" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+  </div>
+</footer>
+</body>
+</html>

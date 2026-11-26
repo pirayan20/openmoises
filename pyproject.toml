@@ -1,0 +1,20 @@
+[project]
+name = "openmoises"
+version = "0.1.0"
+description = "Local stem separation and practice mixer for musicians"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    # torchaudio 2.9 moved audio saving to torchcodec, which demucs 4 doesn't use
+    "torch>=2.8,<2.9",
+    "torchaudio>=2.8,<2.9",
+    "demucs==4.1.0",
+    "yt-dlp>=2026.10.26",
+    "soundfile>=0.14",
+    "librosa>=0.11",
+]
+
+[tool.uv]
+package = false
+# demucs pins old torch on Intel Macs, which conflicts with the torch range above
+environments = ["sys_platform == 'darwin' and platform_machine == 'arm64'", "sys_platform == 'linux'", "sys_platform == 'win32'"]

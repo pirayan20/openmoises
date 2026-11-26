@@ -1,0 +1,9 @@
+Generated with built-in image_gen, transparent background enabled.
+
+Use case: logo-brand
+Asset type: standalone app logo mark for OpenMoises, a local music practice app that splits songs into instrument stems.
+Primary request: Create one polished, distinctive geometric logo symbol: a compact abstract M formed from separated audio waveform ribbons, expressing music being split into stems and brought together for practice. Simple bold silhouette, clean optical balance, recognizable at small app-icon sizes. 
+Style/medium: flat vector-like graphic with crisp smooth edges, contemporary music software identity.
+Color palette: solid coral red #fa2d48, matching the app's black and charcoal interface.
+Composition: one centered symbol on a square transparent canvas, generous even padding, mark occupies about 75% of canvas.
+Constraints: genuinely transparent background; symbol only, no text, no letters spelled out, no wordmark, no mockup, no shadows, no gradients, no 3D, no decorative border. Original identity, do not copy existing music service logos.

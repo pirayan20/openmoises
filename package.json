@@ -1,0 +1,12 @@
+{
+  "name": "openmoises",
+  "private": true,
+  "description": "Browser tests for OpenMoises. Start the server first: uv run backend/server.py",
+  "scripts": {
+    "test": "node tests/ui.cjs && node tests/studio-animation.cjs && node tests/playlists.cjs",
+    "test:realtime": "node tests/realtime.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1"
+  }
+}

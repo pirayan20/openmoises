@@ -4,9 +4,7 @@
 
 A local, open-source practice app for musicians. Paste a YouTube link and OpenMoises splits the song into stems (drums, bass, vocals, other, and optionally guitar and piano) on your own machine. Then play along in the browser with per-stem volume, mute and solo, live tempo and key changes, A-B looping, and detected key and BPM. Setlists remember the tempo, key, mix and loop you practise each song with. There are no monthly limits because nothing leaves your computer.
 
-![OpenMoises demo](docs/demo.gif)
-
-*[Watch with sound (MP4)](docs/demo.mp4)*
+https://github.com/user-attachments/assets/f48e871f-3594-4f7e-a68d-f1b4ca14be57
 
 ## Requirements
 
@@ -24,6 +22,9 @@ uv run backend/server.py
 The first `uv run` creates `.venv` and installs everything. Open http://localhost:8000. The first separation downloads the Demucs model.
 
 With [just](https://github.com/casey/just) installed (`brew install just`), you can run the server in the background instead:
+
+
+
 
 ```bash
 just start   # uv sync, then start the server on :8000 (logs in .run/server.log)
